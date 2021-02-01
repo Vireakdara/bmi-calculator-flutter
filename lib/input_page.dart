@@ -16,9 +16,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  // Color maleCardColour = inactiveCardColour;
-  // Color femaleCardColour = inactiveCardColour;
-
   Gender selectedGender;
   int height = 180;
 
@@ -96,18 +93,29 @@ class _InputPageState extends State<InputPage> {
                             )
                           ],
                         ),
-                        Slider(
-                          max: 220,
-                          min: 120,
-                          value: height.toDouble(),
-                          activeColor: Color(0xFFEB1555),
-                          inactiveColor: Color(0xFF8D8E98),
-                          onChanged: (double newValue) {
-                            setState(() {
-                              height = newValue.round();
-                              print(height);
-                            });
-                          },
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                              inactiveTrackColor: Color(0xFF8D8E98),
+                              activeTrackColor: Colors.white,
+                              thumbColor: Color(0xFFEB1555),
+                              overlayColor: Color(0x29EB1555),
+                              thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 15.0),
+                              overlayShape:
+                                  RoundSliderOverlayShape(overlayRadius: 30.0)),
+                          child: Slider(
+                            max: 220,
+                            min: 120,
+                            value: height.toDouble(),
+                            // activeColor: Color(0xFFEB1555),
+
+                            onChanged: (double newValue) {
+                              setState(() {
+                                height = newValue.round();
+                                print(height);
+                              });
+                            },
+                          ),
                         ),
                       ],
                     ),
